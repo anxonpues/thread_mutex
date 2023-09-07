@@ -16,7 +16,7 @@ void driveCar(string driverName) {
 	if (driverName == "Saldina")
 		delay = 3;
 	else		
-		delay = 3*delay;
+		delay *= 3;
 	cout << "--> delay --> " << delay << endl;
 	this_thread::sleep_for(chrono::seconds(delay));
 	cout << driverName << " is done driving " << endl;
@@ -34,14 +34,13 @@ void driveCar2(string driverName) {
 	if (driverName == "Saldina 2")
 		delay = 3;
 	else
-		delay = 3 * delay;
+		delay *= 3;
 	cout << "--> delay --> " << delay << endl;
 	this_thread::sleep_for(chrono::seconds(delay));
 	cout << driverName << " is done driving " << endl;
 	// after the end of critical job  do not need to unlock
 	// after lock_guard, because does it itself under block
-	// leaving where lock_guard was used
-	
+	// leaving where lock_guard was used	
 }
 
 int main()
@@ -57,7 +56,6 @@ int main()
 
 	t3.join();
 	t4.join();
-
 
 	cin.get();
 }
