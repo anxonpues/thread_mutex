@@ -11,7 +11,12 @@ void driveCar(string driverName) {
 	// the following 3 lines are critical job
 	// need to stay locked when executed to prevent
 	// simultaneous executing with mutex
+	int delay{ 5 };
 	cout << driverName << " is driving " << endl;
+	if (driverName != "Saldina")
+		delay *= 3;
+	else
+		delay = 3;
 	this_thread::sleep_for(chrono::seconds(2));
 	cout << driverName << " is done driving " << endl;
 	// after the end of critical job  do unlock
