@@ -17,7 +17,7 @@ void driveCar(string driverName) {
 		delay *= 3;
 	else
 		delay = 3;
-	this_thread::sleep_for(chrono::seconds(2));
+	this_thread::sleep_for(chrono::seconds(delay));
 	cout << driverName << " is done driving " << endl;
 	// after the end of critical job  do unlock
 	carLock.unlock();
