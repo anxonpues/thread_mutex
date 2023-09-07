@@ -11,12 +11,13 @@ void driveCar(string driverName) {
 	// the following 3 lines are critical job
 	// need to stay locked when executed to prevent
 	// simultaneous executing with mutex
-	int delay{ 5 };
 	cout << driverName << " is driving " << endl;
-	if (driverName != "Saldina")
-		delay *= 3;
-	else
+	int delay{ 5 };
+	if (driverName == "Saldina")
 		delay = 3;
+	else		
+		delay = 3*delay;
+	cout << "--> delay --> " << delay << endl;
 	this_thread::sleep_for(chrono::seconds(delay));
 	cout << driverName << " is done driving " << endl;
 	// after the end of critical job  do unlock
@@ -29,9 +30,17 @@ void driveCar2(string driverName) {
 	// need to stay locked when executed to prevent
 	// simultaneous executing with mutex
 	cout << driverName << " is driving " << endl;
-	this_thread::sleep_for(chrono::seconds(2));
+	int delay{ 5 };
+	if (driverName == "Saldina 2")
+		delay = 3;
+	else
+		delay = 3 * delay;
+	cout << "--> delay --> " << delay << endl;
+	this_thread::sleep_for(chrono::seconds(delay));
 	cout << driverName << " is done driving " << endl;
-	// after the end of critical job  do unlock
+	// after the end of critical job  do not need to unlock
+	// after lock_guard, because does it itself under block
+	// leaving where lock_guard was used
 	
 }
 
